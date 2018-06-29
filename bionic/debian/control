@@ -1,0 +1,37 @@
+Source: subt
+Standards-Version: 3.9.4
+Maintainer: Jose Luis Rivero <jrivero@osrfoundation.org>
+Section: science
+Priority: extra
+Build-Depends: cmake,
+               pkg-config,
+               debhelper (>= 7.0.50~), 
+               libusb-dev,
+               libspnav-dev,
+               libbluetooth-dev,
+               libcwiid-dev,
+               libgazebo9-dev,
+	       gazebo9,
+	       python-catkin-tools,
+	       python-rosinstall,
+	       ros-melodic-desktop-full,
+	       ros-melodic-robot-localization
+Vcs-Browser: https://bitbucket.org/osrf/subt-release
+Vcs-Hg: https://bitbucket.org/osrf/subt-release
+Homepage: https://bitbucket.org/osrf/subt
+
+Package: subt
+Architecture: any
+Pre-Depends: ${misc:Pre-Depends}
+Depends:   libusb-dev,
+           libspnav-dev,
+           libbluetooth-dev,
+           libcwiid-dev,
+           libgazebo9-dev,
+	   gazebo9,
+	   python-catkin-tools,
+	   python-rosinstall,
+	   ros-melodic-desktop-full,
+	   ros-melodic-robot-localization
+Multi-Arch: foreign
+Description: Subterranean Challenge simulator (using gazebo9)
