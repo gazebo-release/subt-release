@@ -1,6 +1,5 @@
-subt (0.0.1-1~bionic) bionic; urgency=medium
+subt (0.0.1-2~bionic) bionic; urgency=medium
 
-  * subt 0.0.1-1 release
+  * subt 0.0.1-2 release
 
- -- Carlos Aguero <caguero@osrfoundation.org>  Tue, 24 May 2016 17:10:19 -0700
-
+ -- Jose Luis Rivero <jrivero@osrfoundation.org>  Wed, 11 Jul 2018 17:43:23 +0200
