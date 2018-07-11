@@ -9,38 +9,27 @@ DEB_HOST_ARCH := $(shell dpkg-architecture -qDEB_HOST_ARCH)
         override_dh_shlibdeps \
         override_dh_auto_test
 
-CATKIN_WS := $(CURDIR)/debian/catkin/subt_ws/
-
-override_dh_auto_clean:
-	$(RM) -fr $(CATKIN_WS)
-
 override_dh_auto_configure:
-	# Pull in ROS and Gazebo configuration
-	$(RM) -fr $(CATKIN_WS) && \
 	. "/opt/ros/melodic/setup.sh" && \
-	mkdir -p $(CATKIN_WS)/src && \
-	cd $(CATKIN_WS)/src && \
-	ln -s $(CURDIR) subt
-
-override_dh_auto_build:
-	. "/opt/ros/melodic/setup.sh" && \
-	cd $(CATKIN_WS) && \
-	catkin_make --cmake-args \
+        dh_auto_configure -- \
                 -DCATKIN_BUILD_BINARY_PACKAGE="1" \
                 -DCMAKE_INSTALL_PREFIX="/opt/ros/melodic" \
                 -DCMAKE_PREFIX_PATH="/opt/ros/melodic"
 
+override_dh_auto_build:
+	. "/opt/ros/melodic/setup.sh" && \
+	dh_auto_build
+
 override_dh_auto_install:
 	. "/opt/ros/melodic/setup.sh" && \
-	cd $(CATKIN_WS) && \
-	DESTDIR=/opt/ros/melodic catkin_make install
+	dh_auto_install
 
 override_dh_auto_test:
 	true
 
 override_dh_shlibdeps:
 	. "/opt/ros/melodic/setup.sh" && \
-	dh_shlibdeps
+	dh_shlibdeps -l$(CURDIR)/debian/subt/opt/ros/melodic/lib/
 
 %:
 	dh $@ --parallel --buildsystem=cmake
